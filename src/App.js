@@ -15,12 +15,25 @@ function App() {
     console.log(copPersons);
     setPersons(copPersons);
   };
+
+  const nameChangeHandler = (e) => {
+    console.log(e.target.value);
+    const newPersons = [...persons];
+    newPersons[0].name = e.target.value;
+    setPersons(newPersons);
+  };
+
   return (
     <div className="App">
       <button onClick={switchNames}>switch names</button>
       {persons.map((person, index) => {
         return (
-          <Person key={index} name={person.name} age={person.age}>
+          <Person
+            key={index}
+            nameChangeHandler={nameChangeHandler}
+            name={person.name}
+            age={person.age}
+          >
             {person.children}
           </Person>
         );
